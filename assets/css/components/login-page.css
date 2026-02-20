@@ -1,0 +1,17 @@
+/* login-page.css */
+
+.login-page-wrapper {
+  @apply min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8;
+}
+
+.login-header-container {
+  @apply sm:mx-auto sm:w-full sm:max-w-md;
+}
+
+.login-page-title {
+  @apply mt-6 text-center text-3xl font-extrabold text-gray-900;
+}
+
+.login-form-container {
+  @apply mt-8 sm:mx-auto sm:w-full sm:max-w-md;
+}

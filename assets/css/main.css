@@ -1,0 +1,43 @@
+/**
+ * Global Styles & Tailwind Configuration
+ * Bu dosya projenin genel tasarım dilini, tipografisini ve 
+ * tekrar eden UI bileşenlerini (Design Tokens) merkezi olarak yönetir.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * @layer components
+ * NOTE: Tailwind'in utility-first yaklaşımını bozmadan, projenin 'Core UI' 
+ * elemanlarını encapsulate (sarmallama) ederek HTML'deki sınıf kalabalığını azaltıyoruz.
+ */
+@layer components {
+  
+  /* --- Primary Action Button --- */
+  .btn-primary {
+    /* Interaction: Pürüzsüz geçiş için duration-200 ve visual feedback için hover state. */
+    @apply px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 disabled:opacity-50;
+  }
+  
+  /* --- Standard Form Input --- */
+  .input-field {
+    /* Focus State: Erişilebilirlik standartlarına uygun ring-2 halkası. */
+    @apply w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none;
+  }
+
+  /* --- Base Layout Card --- */
+  .card {
+    /* Shadow & Border: Beyaz zeminde derinlik algısı yaratan shadow-md ve soft border. */
+    @apply bg-white shadow-md rounded-xl p-6 border border-gray-100;
+  }
+}
+
+/**
+ * Global Base Styles
+ * Sayfa genelindeki temel font ve akıcılık ayarları.
+ */
+body {
+  @apply antialiased text-gray-900 bg-gray-50;
+}

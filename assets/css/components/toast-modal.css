@@ -1,0 +1,95 @@
+/**
+ * Toast & Modal System Styles
+ * Uygulama genelindeki anlık bildirimlerin ve kritik onay pencerelerinin 
+ * görsel dilini, derinlik algısını ve animasyon fiziğini yönetir.
+ */
+
+/* --- TOAST (ZARİF BİLDİRİM) STİLLERİ --- */
+
+.toast-container {
+  /* NOTE: 'backdrop-blur-md' ile cam efekti verilerek modern bir UI sağlandı. */
+  @apply fixed top-6 right-6 z-50 px-6 py-3 rounded-lg shadow-lg flex items-center gap-3 backdrop-blur-md text-white font-medium border;
+}
+
+.toast-success {
+  /* Success State: Güven veren yeşil tonları ve soft border. */
+  @apply bg-green-600/90 border-green-500/50;
+}
+
+.toast-error {
+  /* Error State: Dikkat çeken kırmızı tonları. */
+  @apply bg-red-500/90 border-red-400/50;
+}
+
+.toast-icon {
+  @apply w-6 h-6;
+}
+
+/* --- MODAL (ONAY PENCERESİ) STİLLERİ --- */
+
+.modal-overlay {
+  /* NOTE: Kullanıcıyı işleme odaklamak için 'backdrop-blur-sm' ile arka plan flulaştırıldı. */
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-gray-900/40 backdrop-blur-sm p-4;
+}
+
+.modal-content {
+  /* NOTE: 'transform transition-all' sayesinde animasyonlar pürüzsüz çalışır. */
+  @apply bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 border border-gray-100 transform transition-all;
+}
+
+.modal-icon-wrapper {
+  /* Critical Action Branding: İptal işlemleri için kırmızı uyarı ikonu alanı. */
+  @apply flex items-center justify-center w-12 h-12 rounded-full bg-red-100 mb-4 mx-auto;
+}
+
+.modal-icon {
+  @apply w-6 h-6;
+}
+
+.modal-title {
+  @apply text-lg font-bold text-center text-gray-800 mb-2;
+}
+
+.modal-description {
+  @apply text-center text-gray-500 text-sm mb-6;
+}
+
+.modal-actions {
+  /* NOTE: Butonlar mobilde de kolay tıklanabilmesi için esnek (flex) yapıda. */
+  @apply flex gap-3;
+}
+
+.modal-btn-cancel {
+  @apply flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors;
+}
+
+.modal-btn-confirm {
+  /* Primary Action: İptal onayını vurgulayan kırmızı buton. */
+  @apply flex-1 py-2.5 px-4 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg shadow-sm transition-colors;
+}
+
+/* --- ANIMASYONLAR (VUE TRANSITION STATES) --- */
+
+/**
+ * Toast Animations
+ * 'cubic-bezier' kullanarak bildirimlerin daha akıcı ve 'bounce' (zıplama) efektli çıkmasını sağlıyoruz.
+ */
+.toast-enter-active, .toast-leave-active { 
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+}
+.toast-enter-from { opacity: 0; transform: translateY(-20px) scale(0.9); }
+.toast-leave-to { opacity: 0; transform: translateY(-20px) scale(0.9); }
+
+/**
+ * Modal Animations
+ * Arka planın (overlay) sadece fade olması, içeriğin ise hafifçe yükselerek gelmesi (scale/translate)
+ * kullanıcıda 'katman derinliği' algısı yaratır.
+ */
+.fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+/* Modal Content için özel geçiş fiziği */
+.fade-enter-active .bg-white { 
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+}
+.fade-enter-from .bg-white { transform: scale(0.9) translateY(10px); }

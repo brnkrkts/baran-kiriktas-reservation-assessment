@@ -1,0 +1,57 @@
+/**
+ * Auth Component Styles
+ * Giriş ve Kayıt formlarının görsel hiyerarşisini ve responsive davranışlarını yönetir.
+ */
+
+/* --- Layout & Container --- */
+.auth-card { 
+  /* NOTE: Merkezi hizalama ve derinlik algısı için shadow-lg tercih edilmiştir. */
+  @apply max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg border border-gray-100; 
+}
+
+.auth-title { 
+  @apply text-2xl font-bold mb-6 text-gray-800 text-center; 
+}
+
+.auth-form { 
+  @apply space-y-4; 
+}
+
+.form-group { 
+  /* NOTE: Label ve input arasındaki dikey ritmi sağlar. */
+  @apply flex flex-col gap-1; 
+}
+
+/* --- Form Elements & Inputs --- */
+.label-text { 
+  @apply block text-sm font-medium text-gray-700; 
+}
+
+.input-field { 
+  /* Interaction: Focus durumunda brand color (blue-500) ile visual feedback verir. */
+  @apply mt-1 w-full p-2 border rounded-lg outline-none transition-all border-gray-300 focus:ring-2 focus:ring-blue-500; 
+}
+
+.error-alert { 
+  /* NOTE: Validation hatalarında kullanıcı dikkatini çekmek için soft-red tema uygulanmıştır. */
+  @apply bg-red-50 text-red-600 p-3 rounded text-sm border border-red-100; 
+}
+
+.btn-primary { 
+  /* NOTE: Loading state durumunda 'disabled:opacity-50' ile double-click engellenir. */
+  @apply w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors disabled:opacity-50; 
+}
+
+/* --- Footer & Navigation --- */
+.auth-footer { 
+  @apply mt-6 text-center text-sm; 
+}
+
+.footer-text { 
+  @apply text-gray-600; 
+}
+
+.btn-toggle { 
+  /* NOTE: Login/Register arası geçiş butonları için link-style görünüm. */
+  @apply ml-2 text-blue-600 hover:underline font-medium focus:outline-none; 
+}

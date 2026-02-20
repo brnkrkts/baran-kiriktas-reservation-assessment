@@ -1,0 +1,171 @@
+/**
+ * TimeSlot Component Styles (Calendly Experience)
+ * Bu dosya, uygulamanın ana randevu grid yapısını, interaktif saat butonlarını
+ * ve responsive mizanpaj kurallarını yönetir.
+ */
+
+/* --- Layout & Core Containers --- */
+.calendly-layout { 
+  /* NOTE: Modern tarayıcılarda tam ekran odaklanma sağlayan merkezi mizanpaj. */
+  @apply min-h-screen bg-gray-50 flex items-center justify-center p-4 font-sans relative; 
+}
+
+.auth-wrapper { 
+  @apply w-full max-w-md; 
+}
+
+.calendly-container { 
+  /* NOTE: Shadow-xl ve slideUp animasyonu ile 'Floating Modal' hissi verilmiştir. */
+  @apply w-full max-w-4xl bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden flex flex-col; 
+  animation: slideUp 0.4s ease-out; 
+}
+
+/* --- Header & Identity Section --- */
+.calendly-header { 
+  /* Mobile-first: Mobilde dikey, md breakpoint'te yatay yerleşim. */
+  @apply flex justify-between items-center p-6 border-b border-gray-100 bg-white gap-4 flex-col md:flex-row; 
+}
+
+.header-info { 
+  @apply flex items-center gap-4; 
+}
+
+.avatar { 
+  @apply w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-bold shadow-sm; 
+}
+
+.user-details { 
+  @apply flex flex-col; 
+}
+
+.user-name { 
+  @apply text-xl font-bold text-gray-800 m-0; 
+}
+
+.meeting-duration { 
+  @apply text-sm text-gray-500 font-medium mt-1; 
+}
+
+.btn-logout { 
+  /* Interaction: Danger state için red-50 hover efekti. */
+  @apply p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors shrink-0; 
+}
+
+.icon-base { 
+  @apply w-5 h-5; 
+}
+
+/* --- Active Appointment Badge (UX Card) --- */
+.my-appointment-badge { 
+  /* NOTE: Kullanıcının kendi randevusunu öne çıkaran 'Information Card' yapısı. */
+  @apply flex items-center gap-4 bg-blue-50/80 border border-blue-100 px-4 py-2 rounded-lg w-full md:w-auto justify-between shadow-sm transition-all; 
+}
+
+.badge-info-wrapper { 
+  @apply flex flex-col; 
+}
+
+.badge-label { 
+  @apply text-[10px] font-bold text-gray-500 uppercase tracking-wider; 
+}
+
+.badge-datetime { 
+  @apply text-sm font-bold text-blue-700; 
+}
+
+.btn-cancel { 
+  @apply px-3 py-1.5 bg-white text-red-500 font-semibold border border-red-200 rounded hover:bg-red-50 transition-colors shadow-sm text-xs shrink-0; 
+}
+
+/* --- Booking Grid & Date Picker --- */
+.booking-grid { 
+  /* Desktop'ta yan yana (Split view), Mobilde alt alta mizanpaj. */
+  @apply grid grid-cols-1 md:grid-cols-2 min-h-[400px]; 
+}
+
+.date-section { 
+  @apply p-8 border-b md:border-b-0 md:border-r border-gray-100 bg-white; 
+}
+
+.section-title { 
+  @apply text-lg font-bold text-gray-800 mb-6; 
+}
+
+.calendly-date-picker { 
+  /* NOTE: Standard input appearance customize edilerek brand-identity kazandırıldı. */
+  @apply w-full p-4 border-2 border-gray-200 rounded-lg text-gray-700 font-medium focus:border-blue-500 focus:ring-0 outline-none transition-colors cursor-pointer disabled:bg-gray-100 disabled:cursor-not-allowed; 
+}
+
+/* --- Feedback & Helper Messages --- */
+.helper-text { 
+  @apply text-sm text-gray-500 mt-4 italic; 
+}
+
+.warning-box { 
+  /* NOTE: Kural ihlallerinde (Duplicate booking attempt) gösterilen uyarı kutusu. */
+  @apply mt-4 p-3 bg-yellow-50 text-yellow-700 text-sm rounded border border-yellow-200; 
+}
+
+/* --- Time Selection Section --- */
+.time-section { 
+  @apply p-8 bg-gray-50/50 transition-opacity duration-300; 
+}
+
+.time-section-disabled { 
+  /* Business Logic: Tarih seçilmeden saatlerin tıklanmasını engeller. */
+  @apply opacity-50 pointer-events-none; 
+}
+
+.time-slots { 
+  /* Scrollable area for time slots with custom styling. */
+  @apply grid grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-2; 
+}
+
+.time-slots::-webkit-scrollbar { width: 6px; }
+.time-slots::-webkit-scrollbar-track { background: transparent; }
+.time-slots::-webkit-scrollbar-thumb { @apply bg-gray-300 rounded-full; }
+
+/* --- Footer & Confirmation --- */
+.calendly-footer { 
+  @apply p-6 border-t border-gray-100 bg-white flex flex-col sm:flex-row justify-between items-center gap-4; 
+  animation: fadeIn 0.3s ease-in; 
+}
+
+.selection-summary { 
+  @apply text-gray-700 font-medium; 
+}
+
+.btn-confirm { 
+  @apply px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto; 
+}
+
+/* --- Interactive Time Slot States (Critical UI) --- */
+.time-btn { 
+  @apply py-3 px-4 border border-blue-200 text-blue-600 font-medium rounded-lg hover:border-blue-600 hover:bg-blue-50 transition-all text-center focus:outline-none; 
+}
+
+.booked-time { 
+  /* NOTE: Rezerve edilmiş (Kırmızı) slotlar. 'pointer-events-none' mantığı JS tarafında kontrol edilir. */
+  @apply bg-red-50 text-red-400 border-red-200 cursor-not-allowed opacity-70 hover:bg-red-50 hover:border-red-200 !important; 
+}
+
+.locked-time { 
+  /* Real-time: Başka bir client şu an bu saati inceliyor (Sarı). */
+  @apply bg-yellow-50 text-yellow-600 border-yellow-300 cursor-not-allowed opacity-80 hover:bg-yellow-50 hover:border-yellow-300 !important; 
+}
+
+.selected-time { 
+  /* Kendi seçtiğimiz aktif saat (Mavi). */
+  @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700 shadow-md !important; 
+}
+
+/* --- UI Keyframes (Smoothness) --- */
+@keyframes slideUp { 
+  from { opacity: 0; transform: translateY(20px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+@keyframes fadeIn { 
+  from { opacity: 0; } 
+  to { opacity: 1; } 
+}
