@@ -6,6 +6,9 @@ Bu proje; tarafıma iletilen "Express.js + Vue.js + SQLite" tabanlı legacy rand
 
 ---
 
+🔗 **Live Demo:**  
+https://baran-kiriktas-res-c98d92ouy-brnkrkts-projects.vercel.app/
+
 ## 🚀 Projeyi Çalıştırma (Kurulum Adımları)
 
 Aşağıdaki adımları terminalinizde sırasıyla uygulayarak projeyi saniyeler içinde ayağa kaldırabilirsiniz.
@@ -35,7 +38,7 @@ Proje ana dizininde bulunan `.env.example` dosyasının ismini `.env` olarak de�
 ```env
 PORT=5173
 # Buraya kendi MongoDB bağlantı linkinizi ekleyiniz:
-MONGODB_URI=mongodb://localhost:27017/reservation-app
+NUXT_MONGO_URI=mongodb://localhost:27017/reservation-app
 NUXT_SESSION_PASSWORD=en-az-32-karakterli-guclu-bir-sifre-yaziniz
 
 ```
